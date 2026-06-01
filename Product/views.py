@@ -64,3 +64,11 @@ def review_detail(request, id):
     data = ReviewSerializer(review, many=False).data
     return Response(
         data=data)
+
+@api_view(['GET'])
+def products_reviews(request):
+    products = Product.objects.all()
+    list_ = ProductSerializer(products, many=True).data
+    return Response(
+        data=list_
+    )

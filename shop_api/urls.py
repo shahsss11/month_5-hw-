@@ -10,4 +10,5 @@ urlpatterns = [
     path('api/v1/categories/<int:id>/', views.category_detail),
     path('api/v1/reviews/', views.review_list),
     path('api/v1/reviews/<int:id>/', views.review_detail),
+    path('api/v1/products/reviews/', views.products_reviews)
 ]

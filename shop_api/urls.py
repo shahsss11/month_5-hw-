@@ -4,11 +4,11 @@ from Product import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/products/', views.product_list),
-    path('api/v1/products/<int:id>/', views.product_detail),
-    path('api/v1/categories/', views.category_list),
-    path('api/v1/categories/<int:id>/', views.category_detail),
-    path('api/v1/reviews/', views.review_list),
-    path('api/v1/reviews/<int:id>/', views.review_detail),
+    path('api/v1/products/', views.product_list_create_api_view),
+    path('api/v1/products/<int:id>/', views.product_detail_create_api_view),
+    path('api/v1/categories/', views.category_list_create_api_view),
+    path('api/v1/categories/<int:id>/', views.category_detail_create_api_view),
+    path('api/v1/reviews/', views.review_list_create_api_view),
+    path('api/v1/reviews/<int:id>/', views.review_detail_create_api_view),
     path('api/v1/products/reviews/', views.products_reviews)
 ]

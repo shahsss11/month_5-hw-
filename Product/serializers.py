@@ -24,3 +24,29 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = Review
         fields = 'id text product stars'.split()
 
+class ProductValidateSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=255)
+    description = serializers.CharField()
+    price = serializers.DecimalField(max_digits=10, decimal_places=2)
+    category = serializers.IntegerField()
+    def validate_category(self, category_id):
+        try:
+            Category.objects.get(id=category_id)
+        except Category.DoesNotExist:
+            raise serializers.ValidationError('Category not found')
+        return category_id
+
+class CategoryValidateSerializer(ProductValidateSerializer):
+    name = serializers.CharField(max_length=255) 
+
+
+class ReviewValidateSerializer(serializers.Serializer):
+    text = serializers.CharField()
+    product = serializers.IntegerField()
+    stars = serializers.IntegerField(min_value=1, max_value=5)
+    def validate_product(self, product_id):
+        try:
+            Product.objects.get(id=product_id)
+        except Product.DoesNotExist:
+            raise serializers.ValidationError('Product not found')
+        return product_id

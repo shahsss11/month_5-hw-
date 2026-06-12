@@ -1,14 +1,10 @@
 from django.contrib import admin
-from django.urls import path
-from Product import views
+from django.urls import path, include
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/products/', views.product_list_create_api_view),
-    path('api/v1/products/<int:id>/', views.product_detail_create_api_view),
-    path('api/v1/categories/', views.category_list_create_api_view),
-    path('api/v1/categories/<int:id>/', views.category_detail_create_api_view),
-    path('api/v1/reviews/', views.review_list_create_api_view),
-    path('api/v1/reviews/<int:id>/', views.review_detail_create_api_view),
-    path('api/v1/products/reviews/', views.products_reviews)
+    path('api/v1/products/', include('Product.urls')),
+    path('api/v1/users/', include('user.urls')),
+
 ]

@@ -1,13 +1,12 @@
 from django.urls import path
-from  Product import views
+from . import views
+from .constants import LIST_CREATE, RETRIEVE_UPDATE_DESTROY
 
 urlpatterns = [
-    path('api/v1/products/', views.product_list_create_api_view),
-    path('api/v1/products/<int:id>/', views.product_detail_create_api_view),
-    path('api/v1/categories/', views.category_list_create_api_view),
-    path('api/v1/categories/<int:id>/', views.category_detail_create_api_view),
-    path('api/v1/reviews/', views.review_list_create_api_view),
-    path('api/v1/reviews/<int:id>/', views.review_detail_create_api_view),
-    path('api/v1/products/reviews/', views.products_reviews)
+    path('products/', views.ProductViewSet.as_view(LIST_CREATE)),
+    path('products/<int:id>/', views.ProductViewSet.as_view(RETRIEVE_UPDATE_DESTROY)),
+    path('categories/', views.CategoryListAPIView.as_view()),
+    path('categories/<int:id>/', views.CategoryDetailAPIView.as_view()),
+    path('reviews/', views.ReviewViewSet.as_view(LIST_CREATE)),
+    path('reviews/<int:id>/', views.ReviewViewSet.as_view(RETRIEVE_UPDATE_DESTROY)),
 ]
-
